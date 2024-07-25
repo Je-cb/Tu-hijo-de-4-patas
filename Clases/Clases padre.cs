@@ -9,27 +9,27 @@ namespace Clases
     internal class Persona
     {
         //Atributos
-        private string Nombre;
-        private string Apellido;
-        private int ID;
+        private string nombre;
+        private string apellido;
+        private int id;
 
         //Metodos
 
         //Constructor parametrico
-        public Persona(string Nombre, string Apellido, int ID)
+        public Persona(string nombre, string apellido, int id)
         {
-            this.Nombre = Nombre;
-            this.Apellido = Apellido;
-            this.ID = ID;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.id = id;
         }
 
         //Informacion del usuario
-        public void InfoPersona()
+        public virtual void InfoPersona()
         {
             string info = $"********************INFORMACIÓN DE USUARIO***********************" + Environment.NewLine +
-                          $"Nombre: {Nombre}" + Environment.NewLine +
-                          $"Apellido: {Apellido}" + Environment.NewLine +
-                          $"Número de identificación: {ID}" + Environment.NewLine;
+                          $"Nombre: {nombre}" + Environment.NewLine +
+                          $"Apellido: {apellido}" + Environment.NewLine +
+                          $"Número de identificación: {id}" + Environment.NewLine;
 
             Console.WriteLine(info);
         }
@@ -39,11 +39,11 @@ namespace Clases
     internal class Producto
     {
         //Atributos
-        private int Codigo;
-        private string Nombre;
-        private string Descripcion;
-        private float Precio;
-        private string Categoria;
+        private int codigo;
+        private string nombre;
+        private string descripcion;
+        private float precio;
+        private string categoria;
 
     }
 }
