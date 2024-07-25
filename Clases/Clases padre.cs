@@ -26,10 +26,9 @@ namespace Clases
         //Informacion del usuario
         public virtual void InfoPersona()
         {
-            string info = $"********************INFORMACIÓN DE USUARIO***********************" + Environment.NewLine +
-                          $"Nombre: {nombre}" + Environment.NewLine +
+            string info = $"Nombre: {nombre}" + Environment.NewLine +
                           $"Apellido: {apellido}" + Environment.NewLine +
-                          $"Número de identificación: {id}" + Environment.NewLine;
+                          $"Número de identificación: {id}";
 
             Console.WriteLine(info);
         }

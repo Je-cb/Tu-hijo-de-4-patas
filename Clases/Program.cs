@@ -10,7 +10,16 @@ namespace Clases
     {
         static void Main(string[] args)
         {
+            // Vendedores 
 
+            Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 30685478, 1);
+            Vendedor vendedor2 = new Vendedor("Alejandro", "Cegarra", 30436857, 2);
+
+            vendedor1.InfoPersona();
+            vendedor2.InfoPersona();
+
+
+            // Cliente 
             Console.WriteLine("Inserte los datos del Cliente" + Environment.NewLine + "Nombre:");
             string nombre = Console.ReadLine();
 
@@ -33,6 +42,9 @@ namespace Clases
             cliente1.InfoPersona();
 
             Console.ReadLine();
+
+            
+
 
 
 
