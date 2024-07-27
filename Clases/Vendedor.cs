@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Clases
 {
@@ -16,9 +13,9 @@ namespace Clases
         // Mostrar información
         public override void InfoPersona()
         {
-            Console.WriteLine($"Información del Vendedor {codigo}");
+            Console.WriteLine($" Información del Vendedor {codigo}");
             base.InfoPersona();
-            string info = $"Código de vendedor: {codigo}" + Environment.NewLine;
+            string info = $" Código de vendedor: {codigo}" + Environment.NewLine;
             Console.WriteLine(info);
         }
 

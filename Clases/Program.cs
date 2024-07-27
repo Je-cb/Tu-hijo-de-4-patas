@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace Clases
 {
@@ -10,9 +6,11 @@ namespace Clases
     {
         static void Main(string[] args)
         {
+            var caja = false;
+
             //Ajustes de consola
             Console.Title = "TU HIJO DE 4 PATAS";
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.ForegroundColor = ConsoleColor.Yellow;
 
             // Crear vendedores
             Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 445, 1);
@@ -22,105 +20,131 @@ namespace Clases
             // Crear arreglo de vendedores
             Vendedor[] vendedores = { vendedor1, vendedor2, vendedor3 };
 
-            // Menú
-            Console.WriteLine("TU HIJO DE 4 PATAS"
-                + Environment.NewLine + Environment.NewLine +
-                "MENÚ DE VENDEDORES"
-            );
-                Console.WriteLine("1. Ingresar como vendedor");
-                Console.WriteLine("2. Agregar vendedor");
-                //Console.WriteLine("3. Salir");
-                Console.Write("Opción: ");
 
-                string opcion = Console.ReadLine();
+            while (caja == false)
+            {
+                // Menu apertura de caja
+                Console.WriteLine(Environment.NewLine + " APERTURAR CAJA" + Environment.NewLine);
+                Console.WriteLine(" 1. Ingresar como vendedor");
+                Console.WriteLine(" 2. Agregar vendedor");
+                Console.Write(" Opción: ");
 
-                switch (opcion)
+                string opcionAC = Console.ReadLine(); // opcion para aperturar caja 
+
+                switch (opcionAC)
                 {
-                    case "0":
-                    Console.Clear();
-                    Console.WriteLine("1. Ingresar como vendedor");
-                    Console.WriteLine("2. Agregar vendedor");
-                    Console.WriteLine("3. Salir");
-                    Console.Write("Opción: ");
-                    opcion = Console.ReadLine();
-                    break;
                     case "1":
-                        Console.Write("Ingrese su código del vendedor: ");
+                        Console.Clear();
+                        Console.Write(" Ingrese su código de vendedor: ");
                         int codigoBuscar = Convert.ToInt32(Console.ReadLine());
 
-                    // Buscar vendedor por código
-                    Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoBuscar, vendedores);
+                        // Buscar vendedor por código
+                        Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoBuscar, vendedores);
 
-                    if (vendedorEncontrado != null)
-                    {
-                        vendedorEncontrado.InfoPersona();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Vendedor no encontrado.");
-                    }
-                    break;
+                        if (vendedorEncontrado != null)
+                        {
+                            Console.WriteLine();
+                            vendedorEncontrado.InfoPersona();
+                            caja = true;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(" Vendedor no encontrado");
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                        }
+                        break;
                     case "2":
-                    // Crear un nuevo vendedor
-                        Console.WriteLine("Inserte los datos del nuevo vendedor" + Environment.NewLine);
-                        Console.Write("Nombre: ");
+                        // Crear un nuevo vendedor
+                        Console.WriteLine(" Inserte los datos del nuevo vendedor" + Environment.NewLine);
+                        Console.Write(" Nombre: ");
                         string nombreVendedor = Console.ReadLine();
 
-                        Console.Write("Apellido: ");
+                        Console.Write(" Apellido: ");
                         string apellidoVendedor = Console.ReadLine();
 
-                        Console.Write("Número de identificación: ");
+                        Console.Write(" Número de identificación: ");
                         int idVendedor = Convert.ToInt32(Console.ReadLine());
 
-                        Console.Write("Código de Vendedor: ");
+                        Console.Write(" Código de Vendedor: ");
                         int codVendedor = Convert.ToInt32(Console.ReadLine());
 
                         Vendedor vendedor = new Vendedor(nombreVendedor, apellidoVendedor, idVendedor, codVendedor);
-                        Console.WriteLine( Environment.NewLine + "Vendedor Agregado correctamente");
+                        Console.WriteLine(Environment.NewLine + " Vendedor Agregado correctamente");
                         vendedor.InfoPersona();
-                        break;
-                    case "3":
-                        Environment.Exit(0);
+                        caja = true;
                         break;
                     default:
-                        Console.WriteLine("Opción inválida.");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(" Opción inválida");
+                        Console.ForegroundColor = ConsoleColor.Gray;
+
                         break;
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("Presione cualquier tecla para continuar...");
+                Console.WriteLine(" Presione enter para continuar...");
                 Console.ReadKey();
-            
+                Console.Clear();
+            }
+
+
+                // Menú de caja 
+            Console.WriteLine(" MENÚ DE CAJA" + Environment.NewLine);
+            Console.WriteLine(" 1. Iniciar nueva compra");
+            Console.WriteLine(" 2. Consultar Productos");
+            Console.WriteLine(" 3. Cerrar caja");
+            Console.Write(" Opción: ");
+            string opcionMC = Console.ReadLine();
+
+            switch (opcionMC)
+            {
+                case "1":
+                    Console.Clear();
+                    // Crear cliente 
+                    Console.WriteLine(" Registro de Cliente" + Environment.NewLine + " Nombre:");
+                    string nombre = Console.ReadLine();
+
+                    Console.WriteLine(" Apellido:");
+                    string apellido = Console.ReadLine();
+
+                    Console.WriteLine(" Numero de identificación");
+                    int id = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine(" Email:");
+                    string email = Console.ReadLine();
+
+                    Console.WriteLine(" Teléfono:");
+                    string telefono = Console.ReadLine();
+
+                    Console.WriteLine(" Dirección:");
+                    string direccion = Console.ReadLine();
+
+                    Cliente cliente1 = new Cliente(nombre, apellido, id, email, telefono, direccion);
+                    cliente1.InfoPersona();
+
+                    Console.ReadKey();
+
+                    break;
+                case "2":
+                    // Ver productos
+                    break;
+                case "3":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(" Opción inválida");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+            }
+
         }
 
     }
-    }
+}
 
 
 
-//            // Cliente 
-//            Console.WriteLine("Inserte los datos del Cliente" + Environment.NewLine + "Nombre:");
-//            string nombre = Console.ReadLine();
 
-//            Console.WriteLine("Apellido:");
-//            string apellido = Console.ReadLine();
-
-//            Console.WriteLine("Numero de identificación");
-//            int id = Convert.ToInt32(Console.ReadLine());
-            
-//            Console.WriteLine("Email:");
-//            string email = Console.ReadLine();
-
-//            Console.WriteLine("Teléfono:");
-//            string telefono = Console.ReadLine();
-
-//            Console.WriteLine("Dirección:");
-//            string direccion = Console.ReadLine();
-
-//            Cliente cliente1 = new Cliente(nombre, apellido, id, email, telefono, direccion);
-//            cliente1.InfoPersona();
-
-//            Console.ReadLine();
-
-            
 

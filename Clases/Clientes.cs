@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Clases
 {
@@ -25,11 +22,11 @@ namespace Clases
         public override void InfoPersona()
         {
             //Imprimir información del cliente
-            Console.WriteLine("Datos del Cliente");
+            Console.WriteLine(" Datos del Cliente");
             base.InfoPersona();
-            string info = $"Email: {email}" + Environment.NewLine +
-                         $"Telefono: {telefono}" + Environment.NewLine +
-                         $"Dirección: {direccion}" + Environment.NewLine;
+            string info = $" Email: {email}" + Environment.NewLine +
+                         $" Telefono: {telefono}" + Environment.NewLine +
+                         $" Dirección: {direccion}" + Environment.NewLine;
             Console.WriteLine(info);
         }
     }
