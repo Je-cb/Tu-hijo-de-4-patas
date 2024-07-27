@@ -13,13 +13,26 @@ namespace Clases
             this.codigo = codigo;
         }
 
+        // Mostrar información
         public override void InfoPersona()
         {
-            Console.WriteLine($"Informacion del Vendedor {codigo}");
+            Console.WriteLine($"Información del Vendedor {codigo}");
             base.InfoPersona();
-            string info = $"Codigo de vendedor: {codigo}" + Environment.NewLine;
+            string info = $"Código de vendedor: {codigo}" + Environment.NewLine;
             Console.WriteLine(info);
         }
-        
+
+        // Buscar vendedor por codigo
+        public Vendedor BuscarVendedor(int codigoBuscar, Vendedor[] vendedores)
+        {
+            foreach (var vendedor in vendedores)
+            {
+                if (vendedor.codigo == codigoBuscar)
+                {
+                    return vendedor;
+                }
+            }
+            return null;
+        }
     }
 }

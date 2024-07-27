@@ -10,46 +10,74 @@ namespace Clases
     {
         static void Main(string[] args)
         {
+            //Ajustes de consola
             Console.Title = "TU HIJO DE 4 PATAS";
-            // Crear los vendedores
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            // Crear vendedores
             Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 445, 1);
             Vendedor vendedor2 = new Vendedor("Luis", "Ortega", 5587, 2);
             Vendedor vendedor3 = new Vendedor("Jorge", "Carrero", 29558741, 3);
 
+            // Crear arreglo de vendedores
+            Vendedor[] vendedores = { vendedor1, vendedor2, vendedor3 };
 
-
-
-
+            // Menú
             Console.WriteLine("TU HIJO DE 4 PATAS"
                 + Environment.NewLine + Environment.NewLine +
                 "MENÚ DE VENDEDORES"
             );
                 Console.WriteLine("1. Ingresar como vendedor");
                 Console.WriteLine("2. Agregar vendedor");
-                Console.WriteLine("3. Salir");
+                //Console.WriteLine("3. Salir");
                 Console.Write("Opción: ");
 
                 string opcion = Console.ReadLine();
 
                 switch (opcion)
                 {
+                    case "0":
+                    Console.Clear();
+                    Console.WriteLine("1. Ingresar como vendedor");
+                    Console.WriteLine("2. Agregar vendedor");
+                    Console.WriteLine("3. Salir");
+                    Console.Write("Opción: ");
+                    opcion = Console.ReadLine();
+                    break;
                     case "1":
                         Console.Write("Ingrese su código del vendedor: ");
                         int codigoBuscar = Convert.ToInt32(Console.ReadLine());
 
-                        // Buscar vendedor por código
-                        Vendedor vendedorEncontrado = BuscarVendedor(codigoBuscar, vendedor1, vendedor2, vendedor3);
-                        if (vendedorEncontrado != null)
-                        {
-                            vendedorEncontrado.InfoPersona();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Vendedor no encontrado.");
-                        }
-                        break;
+                    // Buscar vendedor por código
+                    Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoBuscar, vendedores);
+
+                    if (vendedorEncontrado != null)
+                    {
+                        vendedorEncontrado.InfoPersona();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Vendedor no encontrado.");
+                    }
+                    break;
                     case "2":
-                        // Código para agregar un nuevo vendedor
+                    // Crear un nuevo vendedor
+                        Console.WriteLine("Inserte los datos del nuevo vendedor" + Environment.NewLine);
+                        Console.Write("Nombre: ");
+                        string nombreVendedor = Console.ReadLine();
+
+                        Console.Write("Apellido: ");
+                        string apellidoVendedor = Console.ReadLine();
+
+                        Console.Write("Número de identificación: ");
+                        int idVendedor = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Código de Vendedor: ");
+                        int codVendedor = Convert.ToInt32(Console.ReadLine());
+
+                        Vendedor vendedor = new Vendedor(nombreVendedor, apellidoVendedor, idVendedor, codVendedor);
+                        Console.WriteLine( Environment.NewLine + "Vendedor Agregado correctamente");
+                        vendedor.InfoPersona();
                         break;
                     case "3":
                         Environment.Exit(0);
@@ -65,67 +93,8 @@ namespace Clases
             
         }
 
-         //Función para buscar un vendedor por código
-        static Vendedor BuscarVendedor(int codigo, Vendedor v1, Vendedor v2, Vendedor v3)
-        {
-            if (v1.codigo == codigo)
-            {
-                return v1;
-            }
-            else if (v2.codigo == codigo)
-            {
-                return v2;
-            }
-            else if (v3.codigo == codigo)
-            {
-                return v3;
-            }
-            else
-            {
-                return null;
-            }
-        }
     }
     }
-
-
-
-//                Console.WriteLine("Inserte los datos del nuevo vendedor" + Environment.NewLine + "Nombre:");
-//                string nombreV = Console.ReadLine();
-
-//                Console.WriteLine("Apellido:");
-//                string apellidoV = Console.ReadLine();
-
-//                Console.WriteLine("Numero de identificación");
-//                int idV = Convert.ToInt32(Console.ReadLine());
-
-//                Console.WriteLine("Codigo de Vendedor");
-//                int codV = Convert.ToInt32(Console.ReadLine());
-
-//                Vendedor vendedor = new Vendedor(nombreV, apellidoV, idV, codV);
-//            }
-
-
-
-
-
-
-//            //Console.WriteLine("     1. Ver Información        2.Continuar");
-//            //string opcion2 = Console.ReadLine();
-
-//            // Vendedores 
-
-
-//            if (opcion == "1")
-//            {
-//                Console.Clear();
-//                //vendedor1.InfoPersona();
-//                //vendedor2.InfoPersona();
-//                //vendedor3.InfoPersona();
-//            } else
-//            {
-//                Console.Clear();
-//            }
 
 
 
@@ -155,16 +124,3 @@ namespace Clases
 
             
 
-
-
-
-//            /*Console.WriteLine("Mostrar datos del usuario? (1 - SI / 2 - NO)" + Environment.NewLine);
-//            int choice = Console.Read();
-
-//            if (choice == 1)
-//            {
-                
-//            }*/
-//        }
-//    }
-//}
