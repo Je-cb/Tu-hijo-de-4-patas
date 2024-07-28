@@ -4,48 +4,62 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace Clases
+namespace TuHijoDe4Patas
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // Vendedores 
-
-            Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 30685478, 1);
-            Vendedor vendedor2 = new Vendedor("Alejandro", "Cegarra", 30436857, 2);
+            // Construccion de vendedores  iniciales
+            Vendedor vendedor1 = new Vendedor("Arianna Olivares", 30685478, 1);
+            Vendedor vendedor2 = new Vendedor("Alejandro Cegarra", 30436857, 2);
 
             vendedor1.InfoPersona();
             vendedor2.InfoPersona();
 
-
             // Cliente 
-            Console.WriteLine("Inserte los datos del Cliente" + Environment.NewLine + "Nombre:");
-            string nombre = Console.ReadLine();
-
-            Console.WriteLine("Apellido:");
-            string apellido = Console.ReadLine();
-
-            Console.WriteLine("Numero de identificación");
-            int id = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Inserte los datos del Cliente" + Environment.NewLine + 
+                              "Introduzca cada dato en el orden indicado y presione enter" + Environment.NewLine +
+                              "Nombre y apellido: " + Environment.NewLine +
+                              "Numero de cedula:" + Environment.NewLine +
+                              "Email:" + Environment.NewLine + 
+                              "Teléfono:" + Environment.NewLine +
+                              "Dirección:" + Environment.NewLine);
             
-            Console.WriteLine("Email:");
+            string nombre = Console.ReadLine();
+            int id = Convert.ToInt32(Console.ReadLine());
             string email = Console.ReadLine();
-
-            Console.WriteLine("Teléfono:");
             string telefono = Console.ReadLine();
-
-            Console.WriteLine("Dirección:");
             string direccion = Console.ReadLine();
 
-            Cliente cliente1 = new Cliente(nombre, apellido, id, email, telefono, direccion);
+            Cliente cliente1 = new Cliente(nombre, id, email, telefono, direccion);
+          
             cliente1.InfoPersona();
 
-            Console.ReadLine();
+            Producto gatarina = new Producto(001, "Gatsy", "Gatarina Gatsy 8kg", 12.00, "Alimento de gato");
+            
+            CarritoCompra orden = new CarritoCompra();
 
+            //orden.AgregarProducto(gatarina);
+
+            //Console.WriteLine(Environment.NewLine + "Desea agregar gatarina al carrito?" + Environment.NewLine);
+
+            //int decision = Console.Read();
+
+            //if (decision == 1)
+            //{
+            //    orden.AgregarProducto(gatarina);
+            //}
+
+           Console.WriteLine(Environment.NewLine);
+
+           //Console.WriteLine(gatarina.InfoProducto());
+
+           //orden.ListarProductos();
             
 
 
+            Console.ReadKey();
 
 
             /*Console.WriteLine("Mostrar datos del usuario? (1 - SI / 2 - NO)" + Environment.NewLine);

@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Clases
+namespace TuHijoDe4Patas
 {
     internal class Vendedor : Persona
     {
         private int codigo;
-        public Vendedor(string nombre, string apellido, int id, int codigo) : base(nombre, apellido, id)
+        public Vendedor(string nombre, int id, int codigo) : base(nombre, id)
         {
             this.codigo = codigo;
         }
 
         public override void InfoPersona()
         {
-            Console.WriteLine($"Informacion del Vendedor {codigo}");
+            Console.WriteLine($"************Informacion del Vendedor {codigo}************");
             base.InfoPersona();
-            string info = $"Codigo de vendedor: {codigo}" + Environment.NewLine;
+            string info = Environment.NewLine + $"Codigo de vendedor: {codigo}" + Environment.NewLine;
             Console.WriteLine(info);
         }
     }
