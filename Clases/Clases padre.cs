@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TuHijoDe4Patas
 {
@@ -23,8 +20,9 @@ namespace TuHijoDe4Patas
         //Informacion del usuario
         public virtual void InfoPersona()
         {
-            string info = $"Nombre:                     {nombre}" + Environment.NewLine +
-                          $"Número de identificación:   {id}";
+            string info = $" Nombre: {nombre}" + Environment.NewLine +
+                          $" Apellido: {apellido}" + Environment.NewLine +
+                          $" Número de identificación: {id}";
 
             Console.WriteLine(info);
         }
