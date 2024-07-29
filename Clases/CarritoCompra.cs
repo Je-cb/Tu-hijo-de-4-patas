@@ -19,6 +19,8 @@ namespace TuHijoDe4Patas
             contador = 0;
         }
 
+        //Se hace uso de un uevo vector 'AggProdcutos' con una posicion adicional para almacenar el nuevo producto y luego se redimensiona el vector 'productos' original
+        //que contiene el nuevo producto 
         public void AgregarProducto(Producto item)
         {
             if (contador >= productos.Length)
@@ -36,6 +38,8 @@ namespace TuHijoDe4Patas
             contador++;
         }
 
+        //Se hace uso de un nuevo vector 'RestProductos' con una posicion menos que el original. Luego se hace nula la posicion del vector original 'productos' y se ordena de
+        //manera que esta quede posicionada al final del vector y luego se extraen los valores al vector RestProductos quedando fuera la posicion nula al final
         public void EliminarProducto(int codigo)
         {
             int indice = -1;
