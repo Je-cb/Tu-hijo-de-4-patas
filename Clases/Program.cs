@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TuHijoDe4Patas
 {
@@ -139,12 +140,13 @@ namespace TuHijoDe4Patas
                     break;
             }
 
+            Console.ReadKey();
         }
 
     }
 }
 
-            Console.ReadKey();
+
 
 
 

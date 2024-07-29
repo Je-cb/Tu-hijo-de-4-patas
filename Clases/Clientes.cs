@@ -11,7 +11,7 @@ namespace TuHijoDe4Patas
         private string direccion;
 
         //Constructor
-        public Cliente(string nombre, int id, string email, string telefono, string direccion) : base(nombre, id)
+        public Cliente(string nombre, string apellido, int id, string email, string telefono, string direccion) : base(nombre, apellido, id)
         {
             this.email = email;
             this.telefono = telefono;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace TuHijoDe4Patas
@@ -8,32 +7,39 @@ namespace TuHijoDe4Patas
     internal class CarritoCompra
     {
         //Atributos
-        private Producto[] productos;   //Arreglo que almacena los items en el carrito
-        private int cantidadItems;      //Contador de items totales dentro del carrito
 
-        //Constructor por defecto
+        private Producto[] productos;       //Arreglo que guarda los productos dentro del carrito
+        private Producto[] AggProductos;    //Arreglo para redimensionar el carrito al agregar nuevos productos 
+        private Producto[] RestProductos;   //Arreglo para redimensionar el carrito al eliminar productos
+        private int contador;               //Contador de items dentro del carrito
+
         public CarritoCompra()
         {
-            productos = new Producto[0]; //Tamaño inicial del array
-            cantidadItems = 0;
+            productos = new Producto[1];
+            contador = 0;
         }
 
-        // Agregar items al carrito
-        public void AgregarProducto(Producto item)      //**verificar logica de agregacion de items al carrito
+        public void AgregarProducto(Producto item)
         {
-            if (cantidadItems >= productos.Length)
+            if (contador >= productos.Length)
             {
-                Array.Resize(ref productos, productos.Length + 1); // Duplicar el tamaño del array
+                AggProductos = new Producto[contador + 1];
+
+                for (int i = 0; i < productos.Length; i++)
+                {
+                    AggProductos[i] = productos[i];
+                }
+
+                productos = AggProductos;
             }
-            productos[cantidadItems] = item;
-            cantidadItems++;
+            productos[contador] = item;
+            contador++;
         }
 
-        // Eliminar items del carrito
-        public void  EliminarItem(int codigo)
+        public void EliminarProducto(int codigo)
         {
             int indice = -1;
-            for (int i = 0; i < cantidadItems; i++)
+            for (int i = 0; i < productos.Length; i++)
             {
                 if (productos[i].GetCodigo() == codigo)
                 {
@@ -42,20 +48,24 @@ namespace TuHijoDe4Patas
                 }
             }
 
+            // Eliminar producto del array y redimensionarlo 
             if (indice != -1)
             {
-                for (int i = indice; i < cantidadItems - 1; i++)
+                productos[indice] = null;
+
+                RestProductos = new Producto[productos.Length - 1];
+
+                for (int i = indice; i < productos.Length - 1; i++)
                 {
                     productos[i] = productos[i + 1];
                 }
-                productos[cantidadItems - 1] = null;
-                cantidadItems--;
-
-                // Redimensionar el array si es necesario
-                //if (cantidadProductos > 0 && cantidadProductos <= productos.Length / 4)
-                //{
-                //    Array.Resize(ref productos, productos.Length / 2);
-                //}
+                for (int i = 0; i < RestProductos.Length; i++)
+                {
+                    RestProductos[i] = productos[i];
+                }
+                productos = RestProductos;
+                contador--;
+                Console.WriteLine(Environment.NewLine + "Producto eliminado del carrito" + Environment.NewLine);
             }
             else
             {
@@ -63,24 +73,25 @@ namespace TuHijoDe4Patas
             }
         }
 
-        public void ListarProductos()
+        public void ListarCarrito()
         {
-            for(int i = 0;i < cantidadItems;i++)
+            for (int i = 0; i < contador; i++)
             {
-                Console.WriteLine($"productos[i].InfoProducto()");
+                productos[i].InfoProducto();
             }
         }
 
         public void CalcularTotal()
         {
-            double total = 0;
+           double total = 0;
 
-            for (int i = 0; i < cantidadItems; i++)
+           for (int i = 0; i < contador; i++)
             {
                 total += productos[i].GetPrecio();
             }
 
-            Console.WriteLine(total);
+           Console.WriteLine(total.ToString());
         }
     }
+    
 }

@@ -7,11 +7,12 @@ namespace TuHijoDe4Patas
     {
         //Atributos
         private string nombre;
+        private string apellido;
         private int id;
 
         //Metodos
         //Constructor parametrico
-        public Persona(string nombre, int id)
+        public Persona(string nombre, string persona, int id)
         {
             this.nombre = nombre;
             this.id = id;
