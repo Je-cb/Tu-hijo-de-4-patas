@@ -8,72 +8,86 @@ namespace TuHijoDe4Patas
     {
         //Atributos
 
-        private Producto[] productos;       //Arreglo que guarda los productos dentro del carrito
-        private Producto[] AggProductos;    //Arreglo para redimensionar el carrito al agregar nuevos productos 
-        private Producto[] RestProductos;   //Arreglo para redimensionar el carrito al eliminar productos
-        private int contador;               //Contador de items dentro del carrito
+        private Item[] Items;           //Arreglo que guarda los Items dentro del carrito
+        private Item[] AggItems;        //Arreglo para redimensionar el carrito al agregar nuevos Items 
+        private Item[] RestItems;       //Arreglo para redimensionar el carrito al eliminar Items
+        //private int[] cantidadItems;    //Arreglo para enumerar la cantidad de cada item en cada posicion del arreglo 'Items' dentro del carrito
+        private int contador;           //Contador de items dentro del carrito
+        private double subtotal;
+        private double iva;
+        private double total;
 
         public CarritoCompra()
         {
-            productos = new Producto[1];
+            Items = new Item[1];
             contador = 0;
         }
 
-        //Se hace uso de un uevo vector 'AggProdcutos' con una posicion adicional para almacenar el nuevo producto y luego se redimensiona el vector 'productos' original
-        //que contiene el nuevo producto 
-        public void AgregarProducto(Producto item)
+        //Se hace uso de un uevo vector 'AggItem' con una posicion adicional para almacenar el nuevo Item y luego se redimensiona el vector 'Items' original
+        //que contiene el nuevo Item 
+        public void AgregarItem(Item item)
         {
-            if (contador >= productos.Length)
+            for (int i = 0; i < contador; i++)
             {
-                AggProductos = new Producto[contador + 1];
-
-                for (int i = 0; i < productos.Length; i++)
+                if (Items[i].GetCodigo() == item.GetCodigo())           //Comprobar si el item ya se encuentra dentro del carrito
                 {
-                    AggProductos[i] = productos[i];
+                    Items[i].SetCantidad();
+                    Console.WriteLine("El item se sumo al total dentro del carrito");
+                    return;
+                }
+            }
+            
+            if (contador >= Items.Length)
+            {
+                AggItems = new Item[contador + 1];
+
+                for (int i = 0; i < Items.Length; i++)
+                {
+                    AggItems[i] = Items[i];
                 }
 
-                productos = AggProductos;
+                Items = AggItems;
             }
-            productos[contador] = item;
+            Items[contador] = item;
             contador++;
         }
 
-        //Se hace uso de un nuevo vector 'RestProductos' con una posicion menos que el original. Luego se hace nula la posicion del vector original 'productos' y se ordena de
-        //manera que esta quede posicionada al final del vector y luego se extraen los valores al vector RestProductos quedando fuera la posicion nula al final
-        public void EliminarProducto(int codigo)
+        //Se hace uso de un nuevo vector 'RestItems' con una posicion menos que el original. Luego se hace nula la posicion del vector original 'Items' y se ordena de
+        //manera que esta quede posicionada al final del vector y luego se extraen los valores al vector RestItems quedando fuera la posicion nula al final
+        public void EliminarItem(int codigo)
         {
             int indice = -1;
-            for (int i = 0; i < productos.Length; i++)
+            for (int i = 0; i < Items.Length; i++)
             {
-                if (productos[i].GetCodigo() == codigo)
+                if (Items[i].GetCodigo() == codigo)
                 {
                     indice = i;
                     break;
                 }
             }
 
-            // Eliminar producto del array y redimensionarlo 
+            // Eliminar Item del array y redimensionarlo 
             if (indice != -1)
             {
-                productos[indice] = null;
+                Items[indice] = null;
 
-                RestProductos = new Producto[productos.Length - 1];
+                RestItems = new Item[Items.Length - 1];
 
-                for (int i = indice; i < productos.Length - 1; i++)
+                for (int i = indice; i < Items.Length - 1; i++)
                 {
-                    productos[i] = productos[i + 1];
+                    Items[i] = Items[i + 1];
                 }
-                for (int i = 0; i < RestProductos.Length; i++)
+                for (int i = 0; i < RestItems.Length; i++)
                 {
-                    RestProductos[i] = productos[i];
+                    RestItems[i] = Items[i];
                 }
-                productos = RestProductos;
+                Items = RestItems;
                 contador--;
-                Console.WriteLine(Environment.NewLine + "Producto eliminado del carrito" + Environment.NewLine);
+                Console.WriteLine(Environment.NewLine + "Item eliminado del carrito" + Environment.NewLine);
             }
             else
             {
-                Console.WriteLine("Producto no encontrado en el carrito.");
+                Console.WriteLine("Item no encontrado en el carrito");
             }
         }
 
@@ -81,20 +95,42 @@ namespace TuHijoDe4Patas
         {
             for (int i = 0; i < contador; i++)
             {
-                productos[i].InfoProducto();
+                Items[i].InfoItem();
             }
         }
 
-        public void CalcularTotal()
+        public double CalcularSubtotal()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                subtotal += (Items[i].GetSubprecio()) * (Items[i].GetCantidad());
+            }
+
+            return subtotal;
+        }
+
+        public double CalcularIva()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                iva += (Items[i].GetIva()) * (Items[i].GetCantidad());
+                //iva = Items[i].GetIva();
+            }
+
+            return iva;
+        }
+
+        public double CalcularTotal()
         {
            double total = 0;
 
            for (int i = 0; i < contador; i++)
             {
-                total += productos[i].GetPrecio();
+                total += (Items[i].GetPrecio()) * (Items[i].GetCantidad());
+                //total += Items[i].GetPrecio();
             }
 
-           Console.WriteLine(total.ToString());
+            return total;
         }
     }
     

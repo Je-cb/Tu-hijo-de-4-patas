@@ -93,7 +93,7 @@ namespace TuHijoDe4Patas
                 // Menú de caja 
             Console.WriteLine(" MENÚ DE CAJA" + Environment.NewLine);
             Console.WriteLine(" 1. Iniciar nueva compra");
-            Console.WriteLine(" 2. Consultar Productos");
+            Console.WriteLine(" 2. Consultar Items");
             Console.WriteLine(" 3. Cerrar caja");
             Console.Write(" Opción: ");
             string opcionMC = Console.ReadLine();
@@ -128,7 +128,7 @@ namespace TuHijoDe4Patas
 
                     break;
                 case "2":
-                    // Ver productos
+                    // Ver Items
                     break;
                 case "3":
                     Environment.Exit(0);

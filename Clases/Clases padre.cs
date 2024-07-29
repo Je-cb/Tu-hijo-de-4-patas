@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Permissions;
 
 namespace TuHijoDe4Patas
 {
@@ -29,48 +30,73 @@ namespace TuHijoDe4Patas
         }
     }
 
-    //Clase padre producto
-    internal class Producto
+    //Clase padre Item
+    internal class Item
     {
         //Atributos
         private int codigo;
         private string nombre;
         private string descripcion;
-        private double precio;
+        private double subprecio;           //Precio del item sin IVA
+        private double iva;                 //IVA del item de acuerdo a su precio
+        private double precio;              //Precio final del item con IVA
         private string categoria;
+        private int cantidad;
 
         //Constructor parametrico
-        public Producto(int codigo, string nombre, string descripcion, double precio, string categoria)
+        public Item(int codigo, string nombre, string descripcion, double subprecio, string categoria)
         {
             this.codigo = codigo;
             this.nombre = nombre;
             this.descripcion = descripcion;
-            this.precio = precio;
+            this.subprecio = subprecio;     //El constructor recibe inicialmente el precio del item sin iva y en base a esto automaticamente calcula el iva y el precio final de venta. Se hace para facilitar la finalizacion de la factura
             this.categoria = categoria;
+            iva = this.subprecio * 0.16;
+            precio = this.subprecio + iva;
+            cantidad = 1;
         }
 
-        //Informacion del producto
-        public virtual void InfoProducto()
+        //Informacion del Item
+        public virtual void InfoItem()
         {
-            string mensaje = $"************INFORMACIÓN DEL PRODUCTO************" + Environment.NewLine +
-                             $"Codigo:                  {codigo}" + Environment.NewLine +
+            string mensaje = $"Codigo:                  {codigo}" + Environment.NewLine +
                              $"Nombre:                  {nombre}" + Environment.NewLine + 
                              $"Descripción:             {descripcion}" + Environment.NewLine + 
-                             $"Precio:                  {precio}" + Environment.NewLine + 
-                             $"Categoria de producto:   {categoria}";
+                             $"Precio sin iva:          {subprecio} x {cantidad} = {subprecio*cantidad}" + Environment.NewLine + 
+                             $"Categoria de Item:       {categoria}";
             Console.WriteLine(mensaje);
         }
 
-        //Retorna codigo del producto
+        //Retorna codigo del Item
         public int GetCodigo()
         { 
             return codigo;
         }
 
-        //Retorna precio del producto
+        public double GetSubprecio()
+        {
+            return subprecio;
+        }
+
+        public double GetIva()
+        {
+            return iva;
+        }
+
+        //Retorna precio del Item
         public double GetPrecio()
         {
             return precio;
+        }
+
+        public int GetCantidad()
+        {
+            return cantidad;
+        }
+
+        public void SetCantidad()
+        {
+            cantidad++;
         }
     }
 }
