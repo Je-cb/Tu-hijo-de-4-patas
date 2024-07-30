@@ -33,7 +33,7 @@ namespace TuHijoDe4Patas
                                       $"CLIENTE:                         {cliente}" + Environment.NewLine +
                                       $"VENDEDOR:                        {vendedor}" + Environment.NewLine +
                                       $"CODIGO DE FACTURA:               {codigoFactura}" + Environment.NewLine + Environment.NewLine +
-                                      $"ITEMS:                                          " + Environment.NewLine + Environment.NewLine;
+                                      $"ITEMS:   (Cantidad de articulos: {orden.NumeroDeItems()})" + Environment.NewLine + Environment.NewLine;
                 Console.WriteLine(facturacion1);
                 orden.ListarCarrito();
                 string facturacion2 = Environment.NewLine +

@@ -11,6 +11,7 @@ namespace TuHijoDe4Patas
         private string tipo;        //Gato, perro, loro, etc
         private string raza;        //Escribir NO APLICA si es necesario
         private string talla;       // 1 - Pequeño | 2 - Mediano | 3 - Grande
+        private int edad;
 
         public Mascota(string nombre, string tipo, string raza, int talla)
         {

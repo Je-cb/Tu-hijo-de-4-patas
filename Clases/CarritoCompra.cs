@@ -11,7 +11,8 @@ namespace TuHijoDe4Patas
         private Item[] Items;           //Arreglo que guarda los Items dentro del carrito
         private Item[] AggItems;        //Arreglo para redimensionar el carrito al agregar nuevos Items 
         private Item[] RestItems;       //Arreglo para redimensionar el carrito al eliminar Items
-        private int contador;           //Contador de items dentro del carrito
+        private int contador;           //Contador de posiciones dentro del arreglo de items del carrito
+        private int numeroDeItems;      //Contador de numero de articulos individuales dentro del carrito
         private double subtotal;
         private double iva;
         private double total;
@@ -20,6 +21,7 @@ namespace TuHijoDe4Patas
         {
             Items = new Item[1];
             contador = 0;
+            numeroDeItems = 0;
         }
 
         //Se hace uso de un uevo vector 'AggItem' con una posicion adicional para almacenar el nuevo Item y luego se redimensiona el vector 'Items' original
@@ -96,6 +98,15 @@ namespace TuHijoDe4Patas
             {
                 Items[i].InfoItem();
             }
+        }
+
+        public int NumeroDeItems()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                numeroDeItems += Items[i].GetCantidad();
+            }
+            return numeroDeItems;
         }
 
         public double CalcularSubtotal()
