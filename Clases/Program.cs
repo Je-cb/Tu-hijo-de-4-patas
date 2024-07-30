@@ -11,21 +11,21 @@ namespace TuHijoDe4Patas
 
             //Ajustes de consola
             Console.Title = "TU HIJO DE 4 PATAS";
-            //Console.ForegroundColor = ConsoleColor.Yellow;
 
             // Crear vendedores
             Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 445, 1);
             Vendedor vendedor2 = new Vendedor("Luis", "Ortega", 5587, 2);
             Vendedor vendedor3 = new Vendedor("Jorge", "Carrero", 29558741, 3);
 
+
             // Crear arreglo de vendedores
             Vendedor[] vendedores = { vendedor1, vendedor2, vendedor3 };
 
 
-            while (caja == false)
+            while (caja == false) // Validar apertura de caja
             {
                 // Menu apertura de caja
-                Console.WriteLine(Environment.NewLine + " APERTURAR CAJA" + Environment.NewLine);
+                Console.WriteLine(Environment.NewLine + "****************************************** APERTURAR CAJA ******************************************" + Environment.NewLine);
                 Console.WriteLine(" 1. Ingresar como vendedor");
                 Console.WriteLine(" 2. Agregar vendedor");
                 Console.Write(" Opción: ");
@@ -57,7 +57,7 @@ namespace TuHijoDe4Patas
                         break;
                     case "2":
                         // Crear un nuevo vendedor
-                        Console.WriteLine(" Inserte los datos del nuevo vendedor" + Environment.NewLine);
+                        Console.WriteLine("***************************** INSERTE LOS DATOS DEL NUEVO VENDEDOR ***************************** " + Environment.NewLine);
                         Console.Write(" Nombre: ");
                         string nombreVendedor = Console.ReadLine();
 
@@ -71,30 +71,30 @@ namespace TuHijoDe4Patas
                         int codVendedor = Convert.ToInt32(Console.ReadLine());
 
                         Vendedor vendedor = new Vendedor(nombreVendedor, apellidoVendedor, idVendedor, codVendedor);
-                        Console.WriteLine(Environment.NewLine + " Vendedor Agregado correctamente");
+                        Console.WriteLine(Environment.NewLine + "************************************ VENDEDOR AGREGADO CORRECTAMENTE *******************************************");
                         vendedor.InfoPersona();
                         caja = true;
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(" Opción inválida");
+                        Console.WriteLine("******************************************* OPCION NO VÁLIDA *******************************************");
                         Console.ForegroundColor = ConsoleColor.Gray;
 
                         break;
                 }
 
                 Console.WriteLine();
-                Console.WriteLine(" Presione enter para continuar...");
+                Console.WriteLine(" PRESIONE ENTER PARA CONTINUAR -->");
                 Console.ReadKey();
                 Console.Clear();
             }
 
 
                 // Menú de caja 
-            Console.WriteLine(" MENÚ DE CAJA" + Environment.NewLine);
-            Console.WriteLine(" 1. Iniciar nueva compra");
-            Console.WriteLine(" 2. Consultar Items");
-            Console.WriteLine(" 3. Cerrar caja");
+            Console.WriteLine("****************************************** MENÚ DE CAJA ******************************************" + Environment.NewLine);
+            Console.WriteLine(" 1. INICIAR NUEVA COMPRA");
+            Console.WriteLine(" 2. CONSULTAR ITEMS");
+            Console.WriteLine(" 3. CERRAR CAJA");
             Console.Write(" Opción: ");
             string opcionMC = Console.ReadLine();
 
@@ -135,7 +135,7 @@ namespace TuHijoDe4Patas
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(" Opción inválida");
+                    Console.WriteLine("*******************************************OPCION NO VÁLIDA*******************************************");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     break;
             }

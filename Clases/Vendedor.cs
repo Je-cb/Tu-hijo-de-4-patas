@@ -13,9 +13,9 @@ namespace TuHijoDe4Patas
         // Mostrar información
         public override void InfoPersona()
         {
-            Console.WriteLine($"Informacion del Vendedor {codigo}");
+            Console.WriteLine($"Información del Vendedor {codigo}");
             base.InfoPersona();
-            string info = $"Codigo de vendedor: {codigo}" + Environment.NewLine;
+            string info = $"Código de vendedor: {codigo}" + Environment.NewLine;
             Console.WriteLine(info);
         }
 
