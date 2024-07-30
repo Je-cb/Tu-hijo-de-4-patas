@@ -11,7 +11,6 @@ namespace TuHijoDe4Patas
         private Item[] Items;           //Arreglo que guarda los Items dentro del carrito
         private Item[] AggItems;        //Arreglo para redimensionar el carrito al agregar nuevos Items 
         private Item[] RestItems;       //Arreglo para redimensionar el carrito al eliminar Items
-        //private int[] cantidadItems;    //Arreglo para enumerar la cantidad de cada item en cada posicion del arreglo 'Items' dentro del carrito
         private int contador;           //Contador de items dentro del carrito
         private double subtotal;
         private double iva;
@@ -31,7 +30,7 @@ namespace TuHijoDe4Patas
             {
                 if (Items[i].GetCodigo() == item.GetCodigo())           //Comprobar si el item ya se encuentra dentro del carrito
                 {
-                    Items[i].SetCantidad();
+                    Items[i].SetCantidad();                             //Aumenta en 1 la propiedad de cantidad del item en caso de encontrarse
                     Console.WriteLine("El item se sumo al total dentro del carrito");
                     return;
                 }
@@ -114,7 +113,6 @@ namespace TuHijoDe4Patas
             for (int i = 0; i < contador; i++)
             {
                 iva += (Items[i].GetIva()) * (Items[i].GetCantidad());
-                //iva = Items[i].GetIva();
             }
 
             return iva;
@@ -127,7 +125,6 @@ namespace TuHijoDe4Patas
            for (int i = 0; i < contador; i++)
             {
                 total += (Items[i].GetPrecio()) * (Items[i].GetCantidad());
-                //total += Items[i].GetPrecio();
             }
 
             return total;
