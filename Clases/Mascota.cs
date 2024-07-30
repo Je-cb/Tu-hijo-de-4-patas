@@ -13,27 +13,13 @@ namespace TuHijoDe4Patas
         private string talla;       // 1 - Pequeño | 2 - Mediano | 3 - Grande
         private int edad;
 
-        public Mascota(string nombre, string tipo, string raza, int talla)
+        public Mascota(string nombre, string tipo, string raza, string talla, int edad)
         {
             this.nombre = nombre;
             this.tipo = tipo;
             this.raza = raza;
-
-            switch (talla)
-            {
-                case 1:
-                    this.talla = "Pequeño";
-                    break;
-                case 2:
-                    this.talla = "Mediano";
-                    break;
-                case 3:
-                    this.talla = "Grande";
-                    break;
-                default:
-                    this.talla = "Mediano";         //Si se introduce una opcion invalida el constructor asigna a la talla el valor de 'Mediano' por defecto
-                    break;
-            }
+            this.talla = talla;
+            this.edad = edad;
         }
 
         public string InfoMascota()
@@ -43,7 +29,8 @@ namespace TuHijoDe4Patas
                              $"Nombre:                  {nombre}" + Environment.NewLine +
                              $"Tipo:                    {tipo}" + Environment.NewLine +
                              $"Raza:                    {raza}" + Environment.NewLine +
-                             $"Talla:                   {talla}" + Environment.NewLine;
+                             $"Tamaño:                  {talla}" + Environment.NewLine + Environment.NewLine +
+                             $"Edad:                    {edad}";
             return mensaje;
         }
     }

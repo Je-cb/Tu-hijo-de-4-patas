@@ -20,13 +20,12 @@ namespace TuHijoDe4Patas
         }
 
         //Informacion del usuario
-        public virtual void InfoPersona()
+        public virtual string InfoPersona()
         {
-            string info = $" Nombre: {nombre}" + Environment.NewLine +
-                          $" Apellido: {apellido}" + Environment.NewLine +
-                          $" Número de identificación: {id}";
-
-            Console.WriteLine(info);
+            string mensaje = $" Nombre:                      {nombre}" + Environment.NewLine +
+                             $" Apellido:                    {apellido}" + Environment.NewLine +
+                             $" Número de identificación:    {id}";
+            return mensaje;
         }
     }
 
@@ -42,6 +41,8 @@ namespace TuHijoDe4Patas
         private double precio;              //Precio final del item con IVA
         private string categoria;
         private int cantidad;
+        Mascota mascota;                    //Informacion de la mascota para personalizacion
+        Cliente cliente;                    //Informacion del cliente para personalizacion
 
         //Constructor parametrico
         public Item(int codigo, string nombre, string descripcion, double subprecio, string categoria)
@@ -57,17 +58,17 @@ namespace TuHijoDe4Patas
         }
 
         //Informacion del Item
-        public virtual void InfoItem()
+        public virtual string InfoItem()
         {
             string mensaje = $"Codigo:                  {codigo}" + Environment.NewLine +
                              $"Nombre:                  {nombre}" + Environment.NewLine + 
                              $"Descripción:             {descripcion}" + Environment.NewLine + 
                              $"Precio sin iva:          {subprecio} x {cantidad} = {subprecio*cantidad}" + Environment.NewLine + 
                              $"Categoria de Item:       {categoria}";
-            Console.WriteLine(mensaje);
+            return mensaje;
         }
 
-        //Retorna codigo del Item
+        //Getters de item
         public int GetCodigo()
         { 
             return codigo;
@@ -83,7 +84,6 @@ namespace TuHijoDe4Patas
             return iva;
         }
 
-        //Retorna precio del Item
         public double GetPrecio()
         {
             return precio;
@@ -94,9 +94,21 @@ namespace TuHijoDe4Patas
             return cantidad;
         }
 
-        public void SetCantidad()
+
+        //Setters de item
+        public void SetCantidad()   //Aumenta la cantidad del item para el calculo del total en el carrito
         {
             cantidad++;
+        }
+
+        public void SetMascota(Mascota mascota)
+        {
+            this.mascota = mascota;
+        }
+
+        public void SetCliente(Cliente cliente)
+        {
+            this.cliente = cliente;
         }
     }
 

@@ -96,7 +96,7 @@ namespace TuHijoDe4Patas
         {
             for (int i = 0; i < contador; i++)
             {
-                Items[i].InfoItem();
+                Console.WriteLine(Items[i].InfoItem());
             }
         }
 

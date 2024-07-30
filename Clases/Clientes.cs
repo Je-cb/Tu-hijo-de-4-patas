@@ -19,15 +19,15 @@ namespace TuHijoDe4Patas
         }
 
         //Metodos
-        public override void InfoPersona()
+        public override string InfoPersona()
         {
-            //Imprimir información del cliente
-            Console.WriteLine(" Datos del Cliente");
-            base.InfoPersona();
-            string info = $"Email: {email}" + Environment.NewLine +
-                         $"Telefono: {telefono}" + Environment.NewLine +
-                         $"Dirección: {direccion}" + Environment.NewLine;
-            Console.WriteLine(info);
+            //Ver información del cliente
+            string mensaje = $" Datos del Cliente " + Environment.NewLine +
+                             base.InfoPersona() + Environment.NewLine +
+                             $"Email:             {email}" + Environment.NewLine +
+                             $"Telefono:          {telefono}" + Environment.NewLine +
+                             $"Dirección:         {direccion}" + Environment.NewLine;
+            return mensaje;
         }
     }
 }
