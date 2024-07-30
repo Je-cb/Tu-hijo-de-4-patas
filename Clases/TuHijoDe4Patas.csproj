@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="CarritoCompra.cs" />
     <Compile Include="Clases padre.cs" />
-    <Compile Include="Comida.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="Factura.cs" />
