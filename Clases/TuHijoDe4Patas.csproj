@@ -40,17 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cama.cs" />
     <Compile Include="CarritoCompra.cs" />
     <Compile Include="Clases padre.cs" />
-    <Compile Include="Collar.cs" />
     <Compile Include="Comida.cs" />
-    <Compile Include="Correa.cs" />
+    <Compile Include="Producto.cs" />
     <Compile Include="Servicio.cs" />
     <Compile Include="Factura.cs" />
-    <Compile Include="Higiene.cs" />
-    <Compile Include="Juguete.cs" />
-    <Compile Include="Manta.cs" />
     <Compile Include="Mascota.cs" />
     <Compile Include="Vendedor.cs" />
     <Compile Include="Clientes.cs" />
