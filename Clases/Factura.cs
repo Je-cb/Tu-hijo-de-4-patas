@@ -32,7 +32,7 @@ namespace TuHijoDe4Patas
                 string facturacion1 = $"******************************************CONFIRME SU PEDIDO******************************************" + Environment.NewLine + Environment.NewLine +
                                       $"CLIENTE:                         {cliente}" + Environment.NewLine +
                                       $"VENDEDOR:                        {vendedor}" + Environment.NewLine +
-                                      $"CODIGO DE FACTURA:               {codigoFactura}" + Environment.NewLine + Environment.NewLine +
+                                      $"CÓDIGO DE FACTURA:               {codigoFactura}" + Environment.NewLine + Environment.NewLine +
                                       $"ITEMS:                                          " + Environment.NewLine + Environment.NewLine;
                 Console.WriteLine(facturacion1);
                 orden.ListarCarrito();
@@ -40,7 +40,7 @@ namespace TuHijoDe4Patas
                                       $"SUBTOTAL:                        {orden.CalcularSubtotal()}" + Environment.NewLine +
                                       $"IVA:                             {orden.CalcularIva()}" + Environment.NewLine +
                                       $"TOTAL:                           {orden.CalcularTotal()}" + Environment.NewLine + Environment.NewLine +
-                                      $"SELECCIONE UNA OPCION: 1 - CONFIRMAR | 2 - REGRESAR" + Environment.NewLine;
+                                      $"SELECCIONE UNA OPCIÓN: 1 - CONFIRMAR | 2 - REGRESAR" + Environment.NewLine;
                 Console.WriteLine(facturacion2);
 
                 seleccion = Console.Read();
@@ -60,7 +60,9 @@ namespace TuHijoDe4Patas
 
                     default:
                         Console.Clear();
-                        Console.WriteLine("*******************************************OPCION NO VALIDA*******************************************");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("*******************************************OPCION NO VÁLIDA*******************************************");
+                        Console.ForegroundColor = ConsoleColor.Gray;
                         Console.Read();
                         break;
                 }
