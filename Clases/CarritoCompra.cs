@@ -27,6 +27,7 @@ namespace TuHijoDe4Patas
         //Se hace uso de un uevo vector 'AggItem' con una posicion adicional para almacenar el nuevo Item y luego se redimensiona el vector 'Items' original
         //que contiene el nuevo Item 
         public void AgregarItem(Item item)
+
         {
             for (int i = 0; i < contador; i++)
             {

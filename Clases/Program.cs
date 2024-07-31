@@ -113,6 +113,7 @@ namespace TuHijoDe4Patas
                 Console.Clear();
             }
 
+            CarritoCompra carrito = new CarritoCompra();
 
             // Menú de caja 
             var menu = true;
@@ -130,50 +131,189 @@ namespace TuHijoDe4Patas
                     menu = false;
                     Console.Clear();
                     // Crear cliente 
-                    Console.WriteLine(" Registro de Cliente" + Environment.NewLine + " Nombre:");
+                    Console.WriteLine(" ****************************************** REGISTRO DE CLIENTE ******************************************" + Environment.NewLine);
+
+                    Console.Write(" Nombre: ");
                     string nombre = Console.ReadLine();
 
-                    Console.WriteLine(" Apellido:");
+                    Console.Write(" Apellido: ");
                     string apellido = Console.ReadLine();
 
-                    Console.WriteLine(" Numero de identificación");
+                    Console.Write(" Numero de identificación: ");
                     int id = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine(" Email:");
+                    Console.Write(" Email: ");
                     string email = Console.ReadLine();
 
-                    Console.WriteLine(" Teléfono:");
+                    Console.Write(" Teléfono: ");
                     string telefono = Console.ReadLine();
 
-                    Console.WriteLine(" Dirección:");
+                    Console.Write(" Dirección: ");
                     string direccion = Console.ReadLine();
 
                     Cliente cliente1 = new Cliente(nombre, apellido, id, email, telefono, direccion);
                     Console.WriteLine(cliente1.InfoPersona());
 
-                    Console.WriteLine("Continuar para registrar mascota");
+                    Console.WriteLine(" PRESIONE ENTER PARA CONTINUAR -->");
                     Console.ReadKey();
+                    Console.Clear();
 
                     //Crear mascota
-                    Console.WriteLine(" Registro de Mascota" + Environment.NewLine + " Nombre:");
+                    Console.WriteLine(" ****************************************** REGISTRO DE MASCOTA ******************************************" + Environment.NewLine);
+
+                    Console.Write(" Nombre de la mascota: ");
                     string nombreM = Console.ReadLine();
 
-                    Console.WriteLine(" Tipo de animal:");
+                    Console.Write(" Tipo de animal: ");
                     string tipo = Console.ReadLine();
 
-                    Console.WriteLine(" Raza de la mascota -- Escribir 'NO APLICA' si es necesario");
+                    Console.Write(" Raza de la mascota (-- Escribir 'NO APLICA' si es necesario): ");
                     string raza = Console.ReadLine();
 
-                    Console.WriteLine(" Tamaño de la mascota: -- Pequeño - Mediano - Grande");
+                    Console.Write(" Tamaño de la mascota (-- Pequeño - Mediano - Grande): ");
                     string talla = Console.ReadLine();
 
-                    Console.WriteLine(" Edad de la mascota:");
+                    Console.Write(" Edad de la mascota: ");
                     int edad = Convert.ToInt32(Console.ReadLine());
 
                     Mascota mascota1 = new Mascota(nombreM, tipo, raza, talla, edad);
-                    Console.WriteLine(mascota1.InfoMascota());
+                    Console.Write(mascota1.InfoMascota());
 
+                    Console.WriteLine(" PRESIONE ENTER PARA CONTINUAR -->");
+                    Console.ReadKey();
+                    Console.Clear();
 
+                    var agg = true; // Variable para controlar la opcion de agregar items al carrito
+
+                    while (agg)
+                    {
+
+                        Console.WriteLine("****************************************** COMPRA ****************************************** ");
+
+                        Console.Write("INGRESE EL CÓDIGO DEL PRODUCTO: ");
+                        string codItem = Console.ReadLine();
+
+                        switch (codItem)
+                        {
+                            case "1":
+                                carrito.AgregarItem(comidaP);
+                                break;
+                            case "2":
+                                carrito.AgregarItem(camasyM);
+                                break;
+                            case "3":
+                                carrito.AgregarItem(juguetes);
+                                break;
+                            case "4":
+                                carrito.AgregarItem(collaresyC);
+                                break;
+                            case "5":
+                                carrito.AgregarItem(higiene);
+                                break;
+                            case "6":
+                                carrito.AgregarItem(entrenamiento);
+                                break;
+                            case "7":
+                                carrito.AgregarItem(peluqueria);
+                                break;
+                            case "8":
+                                carrito.AgregarItem(consulta);
+                                break;
+                            case "9":
+                                carrito.AgregarItem(hospedaje);
+                                break;
+                            case "10":
+                                carrito.AgregarItem(fotografia);
+                                break;
+                            case "11":
+                                carrito.AgregarItem(ropa);
+                                break;
+                            case "12":
+                                carrito.AgregarItem(joyas);
+                                break;
+                            case "13":
+                                carrito.AgregarItem(bolsos);
+                                break;
+                            case "14":
+                                carrito.AgregarItem(tazas);
+                                break;
+                            case "15":
+                                carrito.AgregarItem(decoracion);
+                                break;
+                            default:
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("EL CÓDIGO INGRESADO NO COINCIDE CON NINGUN PRODUCTO");
+                                Console.ForegroundColor = ConsoleColor.Gray;
+                                break;
+
+                        }
+
+                        var compra = true;
+
+                        while (compra)
+                        {
+
+                            Console.WriteLine(Environment.NewLine + Environment.NewLine + "1. VER CARRITO"
+                                + Environment.NewLine + "2. AGREGAR NUEVO ITEM AL CARRITO"
+                                 + Environment.NewLine + "3. ELIMINAR ITEM DEL CARRITO"
+                                  + Environment.NewLine + "4. VER CARRITO"
+                                );
+
+                            Console.Write(" Opción: ");
+                            string op = Console.ReadLine();
+
+                            switch (op)
+                            {
+                                case "1": // ver carrito
+                                    Console.Clear();
+                                    agg = false;
+                                    Console.WriteLine("****************************************** CARRITO DE COMPRAS ****************************************** ");
+                                    carrito.ListarCarrito();
+                                    Console.WriteLine(Environment.NewLine + Environment.NewLine + "1. AGREGAR NUEVO ITEM AL CARRITO |  0.VOLVER AL MENÚ");
+
+                                    op = Console.ReadLine();
+                                    switch (op)
+                                    {
+                                        case "0":
+                                            Console.Clear();
+                                            compra = true;
+                                            break;
+                                        case "1":
+                                            compra = false; 
+                                            Console.Clear();
+                                            agg = true;
+                                            break;
+                                        default:
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("*******************************************OPCION NO VÁLIDA*******************************************");
+                                            Console.ForegroundColor = ConsoleColor.Gray;
+                                            break;
+                                    }
+                                    break;
+                                case "2": // agregar 
+                                    Console.Clear();
+                                    compra = false; 
+                                    agg = true;
+                                    break;
+                                case "3": // eliminar
+                                    compra = false;
+                                    Console.Write("INGRESE EL CÓDIGO DEL ITEM A ELIMINAR: ");
+                                    int eliminar = Convert.ToInt32(Console.ReadLine());
+                                    carrito.EliminarItem(eliminar);
+                                    break;
+                                case "4": // facturar
+                                    compra = false; 
+                                    break;
+                                default:
+                                    compra = false; 
+                                    agg = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("*******************************************OPCION NO VÁLIDA*******************************************");
+                                    Console.ForegroundColor = ConsoleColor.Gray;
+                                    break;
+                            }
+                        }
+                    }
 
                     break;
                 case "2":
@@ -194,13 +334,13 @@ namespace TuHijoDe4Patas
                                 {
                                     Console.WriteLine(productos[i].InfoItem());
                                 }
-                                    Console.WriteLine(Environment.NewLine + "0. VOLVER AL MENÚ");
-                                    string volver = Console.ReadLine();
-                                    if (volver == "0")
-                                    {
-                                        Console.Clear();
-                                        menu = true;
-                                    }
+                                Console.WriteLine(Environment.NewLine + "0. VOLVER AL MENÚ");
+                                string volver = Console.ReadLine();
+                                if (volver == "0")
+                                {
+                                    Console.Clear();
+                                    menu = true;
+                                }
                                 break;
 
                             case "2":
@@ -220,8 +360,8 @@ namespace TuHijoDe4Patas
                                 }
                                 break;
                             case "3":
-                                menu= false;
-                                Console.Clear();    
+                                menu = false;
+                                Console.Clear();
                                 Console.WriteLine("****************************************** ACCESORIOS DE MODA ******************************************");
                                 for (int i = 0; i < accesorios.Length; i++)
                                 {

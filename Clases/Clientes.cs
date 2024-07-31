@@ -22,11 +22,11 @@ namespace TuHijoDe4Patas
         public override string InfoPersona()
         {
             //Ver información del cliente
-            string mensaje = $" Datos del Cliente " + Environment.NewLine +
+            string mensaje = $" DATOS DEL CLIENTE " + Environment.NewLine +
                              base.InfoPersona() + Environment.NewLine +
-                             $"Email:             {email}" + Environment.NewLine +
-                             $"Telefono:          {telefono}" + Environment.NewLine +
-                             $"Dirección:         {direccion}" + Environment.NewLine;
+                             $" Email:             {email}" + Environment.NewLine +
+                             $" Teléfono:          {telefono}" + Environment.NewLine +
+                             $" Dirección:         {direccion}" + Environment.NewLine;
             return mensaje;
         }
     }
