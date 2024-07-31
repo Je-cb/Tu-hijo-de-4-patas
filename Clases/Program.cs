@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TuHijoDe4Patas
 {
@@ -24,16 +23,16 @@ namespace TuHijoDe4Patas
             Producto camasyM = new Producto(2, "Camas y mantas personalizadas", "Camas y mantas con diseños personalizados y grabados de nombre", 33.5, "Cuidado de mascota");
             Producto juguetes = new Producto(3, "Juguetes", "Juguetes con grabado de nombre y personalizados de acuerdo a las necesidades y tipo de mascota", 9.55, "Cuidado de mascota");
             Producto collaresyC = new Producto(4, "Collares y correas", "Collares y correas con grabado de nombre e informacion del dueño", 4.35, "Cuidado de mascota");
-            Producto higiene = new Producto(5, "Accesorios de higiene", "Objetos decorativos para el hogar con motivos de mascotas.", 48, "Accesorios de moda");
+            Producto higiene = new Producto(5, "Accesorios de higiene", "Cepillos, cortauñas y kits de aseo personalizados", 48, "Cuidado de mascota");
             //Crear arreglo de servicios de moda
             Producto[] productos = { comidaP, camasyM, juguetes, collaresyC, higiene };
 
             // Crear servicios
             Servicio entrenamiento = new Servicio(6, "Entrenamiento Personalizado", "Entrenamiento personalizado en base a las necesidades de la mascota", 12.6, "Servicio");
-            Servicio peluqueria = new Servicio(7, "Peluqueria y estetica", "Servicio de peluqueria y tratamientos esteticos", 16.8, "Servicio");
+            Servicio peluqueria = new Servicio(7, "Peluquería y estética", "Servicio de peluquería y tratamientos estéticos", 16.8, "Servicio");
             Servicio consulta = new Servicio(8, "Consulta veterinaria", "Consulta veterinaria y tratamiento para mascotas", 25.2, "Servicio");
             Servicio hospedaje = new Servicio(9, "Hospedaje", "Servicio de hospedaje para mascotas", 6.72, "Servicio");
-            Servicio fotografia = new Servicio(10, "Fotografia", "Sesiones fotográficas personalizadas para mastocas", 12.6, "Servicio");
+            Servicio fotografia = new Servicio(10, "Fotografía", "Sesiones fotográficas personalizadas para mascotas", 12.6, "Servicio");
             // Crear arreglo de servicios
             Servicio[] servicios = { entrenamiento, peluqueria, consulta, hospedaje, fotografia };
 
@@ -43,7 +42,8 @@ namespace TuHijoDe4Patas
             Producto bolsos = new Producto(13, "Mochilas y transportadoras", "Personalizadas con el nombre de la mascota y diseño exclusivo.", 32.8, "Accesorios de moda");
             Producto tazas = new Producto(14, "Tazas y botellas", "Con imágenes y frases relacionadas con la mascota.", 8.45, "Accesorios de moda");
             Producto decoracion = new Producto(15, "Decoración temática", "Objetos decorativos para el hogar con motivos de mascotas.", 48, "Accesorios de moda");
-            //Crear arreglo de servicios de moda
+
+            //Crear arreglo de accesorios de moda
             Producto[] accesorios = { ropa, joyas, bolsos, tazas, decoracion };
 
             while (caja == false) // Validar apertura de caja
@@ -75,7 +75,7 @@ namespace TuHijoDe4Patas
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(" Vendedor no encontrado");
+                            Console.WriteLine("Vendedor no encontrado");
                             Console.ForegroundColor = ConsoleColor.Gray;
                         }
                         break;
@@ -114,7 +114,9 @@ namespace TuHijoDe4Patas
             }
 
 
-                // Menú de caja 
+            // Menú de caja 
+            var menu = true;
+
             Console.WriteLine("****************************************** MENÚ DE CAJA ******************************************" + Environment.NewLine);
             Console.WriteLine(" 1. INICIAR NUEVA COMPRA");
             Console.WriteLine(" 2. CONSULTAR ITEMS");
@@ -125,6 +127,7 @@ namespace TuHijoDe4Patas
             switch (opcionMC)
             {
                 case "1":
+                    menu = false;
                     Console.Clear();
                     // Crear cliente 
                     Console.WriteLine(" Registro de Cliente" + Environment.NewLine + " Nombre:");
@@ -170,47 +173,76 @@ namespace TuHijoDe4Patas
                     Mascota mascota1 = new Mascota(nombreM, tipo, raza, talla, edad);
                     Console.WriteLine(mascota1.InfoMascota());
 
+
+
                     break;
                 case "2":
-                    // Ver Items
-
-                    Console.Clear();
-                    Console.WriteLine(" 1. PRODUCTOS PARA EL CUIDADO DE MASCOTAS");
-                    Console.WriteLine(" 2. SERVICIOS ESPECIALES");
-                    Console.WriteLine(" 3. ACCESORIOS DE MODA");
-                    Console.Write(" Opción: ");
-                    string opcionI = Console.ReadLine();
-
-                    switch (opcionI)
+                    while (menu == true)
                     {
-                        case "1":
-                            //items de producto
-                            Console.WriteLine();
-                            for (int i = 0; i < productos.Length; i++)
-                            {
-                                Console.WriteLine(productos[i].InfoItem());
-                            }
-                            break;
+                        Console.Clear();
+                        Console.WriteLine(" 1. PRODUCTOS PARA EL CUIDADO DE MASCOTAS");
+                        Console.WriteLine(" 2. SERVICIOS ESPECIALES");
+                        Console.WriteLine(" 3. ACCESORIOS DE MODA");
+                        Console.Write(" Opción: ");
+                        string opcionI = Console.ReadLine();
 
-                        case "2":
-                            Console.WriteLine();
-                            for (int i = 0; i < servicios.Length; i++)
-                            {
-                                Console.WriteLine(servicios[i].InfoItem());
-                            }
-                            break;
-                        case "3":
-                            Console.WriteLine();
-                            for (int i = 0; i < accesorios.Length; i++)
-                            {
-                                Console.WriteLine(accesorios[i].InfoItem());
-                            }
-                            break;
-                        default:
-                            Console.WriteLine("OPCION NO VALIDA");
-                            break;
+                        switch (opcionI)
+                        {
+                            case "1":
+                                Console.WriteLine("****************************************** PRODUCTOS PARA EL CUIDADO DE MASCOTAS ****************************************** ");
+                                for (int i = 0; i < productos.Length; i++)
+                                {
+                                    Console.WriteLine(productos[i].InfoItem());
+                                }
+                                    Console.WriteLine(Environment.NewLine + "0. VOLVER AL MENÚ");
+                                    string volver = Console.ReadLine();
+                                    if (volver == "0")
+                                    {
+                                        Console.Clear();
+                                        menu = true;
+                                    }
+                                break;
+
+                            case "2":
+                                menu = false;
+                                Console.Clear();
+                                Console.WriteLine("****************************************** SERVICIOS ESPECIALES ****************************************** ");
+                                for (int i = 0; i < servicios.Length; i++)
+                                {
+                                    Console.WriteLine(servicios[i].InfoItem());
+                                }
+                                Console.WriteLine(Environment.NewLine + "0. VOLVER AL MENÚ");
+                                volver = Console.ReadLine();
+                                if (volver == "0")
+                                {
+                                    Console.Clear();
+                                    menu = true;
+                                }
+                                break;
+                            case "3":
+                                menu= false;
+                                Console.Clear();    
+                                Console.WriteLine("****************************************** ACCESORIOS DE MODA ******************************************");
+                                for (int i = 0; i < accesorios.Length; i++)
+                                {
+                                    Console.WriteLine(accesorios[i].InfoItem());
+                                }
+                                Console.WriteLine(Environment.NewLine + "0. VOLVER AL MENÚ");
+                                volver = Console.ReadLine();
+                                if (volver == "0")
+                                {
+                                    Console.Clear();
+                                    menu = true;
+                                }
+                                break;
+                            default:
+                                menu = false;
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("*******************************************OPCION NO VÁLIDA*******************************************");
+                                Console.ForegroundColor = ConsoleColor.Gray;
+                                break;
+                        }
                     }
-
                     break;
                 case "3":
                     Environment.Exit(0);

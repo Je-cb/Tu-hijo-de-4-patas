@@ -11,12 +11,13 @@ namespace TuHijoDe4Patas
         }
 
         // Mostrar información
-        public override void InfoPersona()
+        public override string InfoPersona()
         {
-            Console.WriteLine($"Información del Vendedor {codigo}");
-            base.InfoPersona();
-            string info = $"Código de vendedor: {codigo}" + Environment.NewLine;
-            Console.WriteLine(info);
+
+            string mensaje = $" Información del Vendedor {codigo} " + Environment.NewLine +
+                            base.InfoPersona() + Environment.NewLine +
+                            $"Codigo del vendedor:             {codigo}" + Environment.NewLine;
+            return mensaje;
         }
 
         // Buscar vendedor por codigo
