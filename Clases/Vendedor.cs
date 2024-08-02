@@ -16,7 +16,7 @@ namespace TuHijoDe4Patas
 
             string mensaje = $" Información del Vendedor {codigo} " + Environment.NewLine +
                             base.InfoPersona() + Environment.NewLine +
-                            $"Codigo del vendedor:             {codigo}" + Environment.NewLine;
+                            $" Codigo del vendedor:             {codigo}" + Environment.NewLine;
             return mensaje;
         }
 

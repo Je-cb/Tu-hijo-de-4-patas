@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Schema;
 
 namespace TuHijoDe4Patas
 {
@@ -24,50 +20,32 @@ namespace TuHijoDe4Patas
         public void FinalizarFactura()
         {
             var factura = false;
-            int seleccion;
 
             while (factura == false)
             {
                 Console.Clear();
-                string facturacion1 = $"******************************************CONFIRME SU PEDIDO******************************************" + Environment.NewLine + Environment.NewLine +
-                                      $"CLIENTE:                         {cliente}" + Environment.NewLine +
-                                      $"VENDEDOR:                        {vendedor}" + Environment.NewLine +
-                                      $"CODIGO DE FACTURA:               {codigoFactura}" + Environment.NewLine + Environment.NewLine +
-                                      $"ITEMS:   (Cantidad de articulos: {orden.NumeroDeItems()})" + Environment.NewLine + Environment.NewLine;
+                string facturacion1 = $"****************************************** FACTURA {codigoFactura} ******************************************" + Environment.NewLine + Environment.NewLine +
+                                      $" CLIENTE:                         {cliente.InfoPersona()}" + Environment.NewLine +
+                                      $" VENDEDOR:                        {vendedor.InfoPersona()}" + Environment.NewLine +
+                                      $" CODIGO DE FACTURA:               {codigoFactura}" + Environment.NewLine + Environment.NewLine +
+                                      $" ITEMS:   (Cantidad de artÍculos: {orden.NumeroDeItems()})" + Environment.NewLine + Environment.NewLine;
                 Console.WriteLine(facturacion1);
                 orden.ListarCarrito();
                 string facturacion2 = Environment.NewLine +
                                       $"SUBTOTAL:                        {orden.CalcularSubtotal()}" + Environment.NewLine +
                                       $"IVA:                             {orden.CalcularIva()}" + Environment.NewLine +
                                       $"TOTAL:                           {orden.CalcularTotal()}" + Environment.NewLine + Environment.NewLine +
-                                      $"SELECCIONE UNA OPCIÓN: 1 - CONFIRMAR | 2 - REGRESAR" + Environment.NewLine;
+                                      $" PRESIONE ENTER PARA CONTINUAR --> " + Environment.NewLine;
                 Console.WriteLine(facturacion2);
 
-                seleccion = Console.Read();
-
-                switch (seleccion)
-                {
-                    case 1:
-                        Console.Clear();
-                        Console.WriteLine("********************************PEDIDO FINALIZADO, GRACIAS POR SU COMPRA********************************");
-                        factura = true;
-                        codigoFactura++;
-                        Console.Read();
-                        break;
-
-                    case 2:
-                        break;
-
-                    default:
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("*******************************************OPCION NO VÁLIDA*******************************************");
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Read();
-                        break;
-                }
+                Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("********************************PEDIDO FINALIZADO, GRACIAS POR SU COMPRA********************************");
+                factura = true;
+                codigoFactura++;
+                Console.Read();
             }
         }
-
     }
+
 }
