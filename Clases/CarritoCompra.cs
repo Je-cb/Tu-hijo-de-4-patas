@@ -34,7 +34,7 @@ namespace TuHijoDe4Patas
                 if (Items[i].GetCodigo() == item.GetCodigo())           //Comprobar si el item ya se encuentra dentro del carrito
                 {
                     Items[i].SetCantidad();                             //Aumenta en 1 la propiedad de cantidad del item en caso de encontrarse
-                    Console.WriteLine("El item se sumo al total dentro del carrito");
+                    Console.WriteLine("EL ITEM FUE AGREGADO AL CARRITO");
                     return;
                 }
             }
@@ -85,11 +85,11 @@ namespace TuHijoDe4Patas
                 }
                 Items = RestItems;
                 contador--;
-                Console.WriteLine(Environment.NewLine + "Item eliminado del carrito" + Environment.NewLine);
+                Console.WriteLine(Environment.NewLine + "ITEM ELIMINADO DEL CARRITO" + Environment.NewLine);
             }
             else
             {
-                Console.WriteLine("Item no encontrado en el carrito");
+                Console.WriteLine("ITEM NO ENCONTRADO EN EL CARRITO");
             }
         }
 

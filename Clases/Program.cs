@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 
 namespace TuHijoDe4Patas
 {
@@ -16,9 +15,11 @@ namespace TuHijoDe4Patas
             Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 445, 1);
             Vendedor vendedor2 = new Vendedor("Luis", "Ortega", 5587, 2);
             Vendedor vendedor3 = new Vendedor("Jorge", "Carrero", 29558741, 3);
-
             // Crear arreglo de vendedores
             Vendedor[] vendedores = { vendedor1, vendedor2, vendedor3 };
+
+            // Variable de control de codigo de vendedor
+            int codigoVendedor = 0;
 
             //Crear productos para el cuidado
             Producto comidaP = new Producto(1, "Comida personalizada", "Mezcla de alimento personalizada para mascotas", 18.9, "Cuidado de mascota");
@@ -44,91 +45,38 @@ namespace TuHijoDe4Patas
             Producto bolsos = new Producto(13, "Mochilas y transportadoras", "Personalizadas con el nombre de la mascota y diseño exclusivo.", 32.8, "Accesorios de moda");
             Producto tazas = new Producto(14, "Tazas y botellas", "Con imágenes y frases relacionadas con la mascota.", 8.45, "Accesorios de moda");
             Producto decoracion = new Producto(15, "Decoración temática", "Objetos decorativos para el hogar con motivos de mascotas.", 48, "Accesorios de moda");
-
-            int codigoVendedor = 0;
-
             //Crear arreglo de accesorios de moda
             Producto[] accesorios = { ropa, joyas, bolsos, tazas, decoracion };
 
+            // Crear carrito de compras
+            CarritoCompra carrito = new CarritoCompra();
+
             while (caja == false) // Validar apertura de caja
             {
-                // Menu apertura de caja
                 Console.WriteLine(Environment.NewLine + "****************************************** APERTURAR CAJA ******************************************" + Environment.NewLine);
-                Console.WriteLine(" 1. Ingresar como vendedor");
-                Console.WriteLine(" 2. Agregar vendedor");
-                Console.Write(" Opción: ");
+                Console.Write(Environment.NewLine + " INGRESE SU CÓDIGO DE VENDEDOR: ");
+                int codigoBuscar = Convert.ToInt32(Console.ReadLine());
+                codigoVendedor = codigoBuscar;
 
-                string opcionAC = Console.ReadLine(); // opcion para aperturar caja 
+                // Buscar vendedor por código
+                Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoBuscar, vendedores);
 
-                switch (opcionAC)
+                if (vendedorEncontrado != null)
                 {
-                    case "1":
-                        Console.Clear();
-                        Console.Write(" Ingrese su código de vendedor: ");
-                        int codigoBuscar = Convert.ToInt32(Console.ReadLine());
-                        codigoVendedor = codigoBuscar;
-
-                        // Buscar vendedor por código
-                        Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoBuscar, vendedores);
-
-                        if (vendedorEncontrado != null)
-                        {
-                            //Console.WriteLine();
-                            vendedorEncontrado.InfoPersona();
-                            Console.ReadKey();
-                            caja = true;
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Vendedor no encontrado");
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                        }
-                        break;
-                    case "2":
-                        // Crear un nuevo vendedor
-                        Console.WriteLine("***************************** INSERTE LOS DATOS DEL NUEVO VENDEDOR ***************************** " + Environment.NewLine);
-                        Console.Write(" Nombre: ");
-                        string nombreVendedor = Console.ReadLine();
-
-                        Console.Write(" Apellido: ");
-                        string apellidoVendedor = Console.ReadLine();
-
-                        Console.Write(" Número de identificación: ");
-                        int idVendedor = Convert.ToInt32(Console.ReadLine());
-
-                        Console.Write(" Código de Vendedor: ");
-                        int codVendedor = Convert.ToInt32(Console.ReadLine());
-
-
-                        // Crear un nuevo vendedor
-                        Vendedor nuevoVendedor = new Vendedor(nombreVendedor, apellidoVendedor, idVendedor, codVendedor);
-
-                        // Redimensionar el arreglo de vendedores
-                        Array.Resize(ref vendedores, vendedores.Length + 1);
-
-                        // Agregar el nuevo vendedor al final
-                        vendedores[vendedores.Length - 1] = nuevoVendedor;
-                        Console.Clear();
-                        Console.WriteLine(Environment.NewLine + "************************************ VENDEDOR AGREGADO CORRECTAMENTE *******************************************");
-
-                        Console.WriteLine(Environment.NewLine + nuevoVendedor.InfoPersona());
-                        caja = true;
-                        break;
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("******************************************* OPCION NO VÁLIDA *******************************************");
-                        Console.ForegroundColor = ConsoleColor.Gray;
-
-                        break;
+                    Console.WriteLine(Environment.NewLine + vendedorEncontrado.InfoPersona());
+                    caja = true;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(" VENDEDOR NO ENCONTRADO");
+                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
 
-                Console.WriteLine();
-                Console.WriteLine(" PRESIONE ENTER PARA CONTINUAR -->");
+                Console.WriteLine(Environment.NewLine + " PRESIONE ENTER PARA CONTINUAR -->");
                 Console.ReadKey();
                 Console.Clear();
             }
-            CarritoCompra carrito = new CarritoCompra();
 
             // Menú de caja 
             var menu = true;
@@ -138,13 +86,14 @@ namespace TuHijoDe4Patas
             Console.WriteLine(" 2. CONSULTAR ITEMS");
             Console.WriteLine(" 3. CERRAR CAJA");
             Console.Write(" Opción: ");
-            string opcionMC = Console.ReadLine();
+            string opcionMC = Console.ReadLine(); // variable de control de menu de caja
 
             switch (opcionMC)
             {
                 case "1":
                     menu = false;
                     Console.Clear();
+
                     // Crear cliente 
                     Console.WriteLine(" ****************************************** REGISTRO DE CLIENTE ******************************************" + Environment.NewLine);
 
@@ -167,6 +116,7 @@ namespace TuHijoDe4Patas
                     string direccion = Console.ReadLine();
 
                     Cliente cliente1 = new Cliente(nombre, apellido, id, email, telefono, direccion);
+                    // Mostrar cliente
                     Console.WriteLine(Environment.NewLine + cliente1.InfoPersona());
 
                     Console.WriteLine("PRESIONE ENTER PARA CONTINUAR -->");
@@ -190,7 +140,7 @@ namespace TuHijoDe4Patas
 
                     Console.Write(" Edad de la mascota: ");
                     int edad = Convert.ToInt32(Console.ReadLine());
-
+                    // Mostrar mascota
                     Mascota mascota1 = new Mascota(nombreM, tipo, raza, talla, edad);
                     Console.Write(mascota1.InfoMascota());
 
@@ -202,7 +152,6 @@ namespace TuHijoDe4Patas
 
                     while (agg)
                     {
-
                         Console.WriteLine("****************************************** COMPRA ****************************************** ");
 
                         Console.Write("INGRESE EL CÓDIGO DEL PRODUCTO: ");
@@ -267,7 +216,6 @@ namespace TuHijoDe4Patas
 
                         while (compra)
                         {
-
                             Console.WriteLine(Environment.NewLine + Environment.NewLine + " 1. VER CARRITO"
                                 + Environment.NewLine + " 2. AGREGAR NUEVO ITEM AL CARRITO"
                                  + Environment.NewLine + " 3. ELIMINAR ITEM DEL CARRITO"
@@ -279,7 +227,7 @@ namespace TuHijoDe4Patas
 
                             switch (op)
                             {
-                                case "1": // ver carrito
+                                case "1": // Ver carrito
                                     Console.Clear();
                                     agg = false;
                                     Console.WriteLine("****************************************** CARRITO DE COMPRAS ****************************************** ");
@@ -305,12 +253,12 @@ namespace TuHijoDe4Patas
                                             break;
                                     }
                                     break;
-                                case "2": // agregar 
+                                case "2": // Agregar item 
                                     Console.Clear();
                                     compra = false;
                                     agg = true;
                                     break;
-                                case "3": // eliminar
+                                case "3": // Eliminar item
                                     compra = false;
                                     Console.Clear();
                                     Console.Write(" INGRESE EL CÓDIGO DEL ITEM A ELIMINAR: ");
@@ -331,24 +279,14 @@ namespace TuHijoDe4Patas
                                             break;
                                     }
                                     break;
-                                case "4": // facturar
+                                case "4": // Facturar
                                     compra = false;
                                     agg = false;
                                     Console.Clear();
 
-                                    if (codigoVendedor <= 3)
-                                    {
-                                        Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoVendedor, vendedores);
-                                        Factura factura = new Factura(cliente1, vendedorEncontrado, carrito);
-                                        factura.FinalizarFactura();
-                                    }
-                                    else
-                                    {
-                                        //Vendedor nuevoVendedor = vendedores[4];
-                                        //Factura factura = new Factura(cliente1, nuevoVendedor, carrito);
-                                        //factura.FinalizarFactura();
-                                    }
-
+                                    Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoVendedor, vendedores);
+                                    Factura factura = new Factura(cliente1, vendedorEncontrado, carrito);
+                                    factura.FinalizarFactura();
                                     break;
                                 default:
                                     compra = false;
@@ -360,7 +298,6 @@ namespace TuHijoDe4Patas
                             }
                         }
                     }
-
                     break;
                 case "2":
                     while (menu == true)

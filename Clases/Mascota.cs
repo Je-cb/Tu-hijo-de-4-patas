@@ -30,7 +30,7 @@ namespace TuHijoDe4Patas
                              $"Tipo:                    {tipo}" + Environment.NewLine +
                              $"Raza:                    {raza}" + Environment.NewLine +
                              $"Tamaño:                  {talla}" + Environment.NewLine + Environment.NewLine +
-                             $"Edad:                    {edad}";
+                             $"Edad:                    {edad}" + Environment.NewLine;
             return mensaje;
         }
     }

@@ -27,7 +27,7 @@ namespace TuHijoDe4Patas
                 string facturacion1 = $"****************************************** FACTURA {codigoFactura} ******************************************" + Environment.NewLine + Environment.NewLine +
                                       $" CLIENTE:                         {cliente.InfoPersona()}" + Environment.NewLine +
                                       $" VENDEDOR:                        {vendedor.InfoPersona()}" + Environment.NewLine +
-                                      $" CODIGO DE FACTURA:               {codigoFactura}" + Environment.NewLine + Environment.NewLine +
+                                      $" CÓDIGO DE FACTURA:               {codigoFactura}" + Environment.NewLine + Environment.NewLine +
                                       $" ITEMS:   (Cantidad de artÍculos: {orden.NumeroDeItems()})" + Environment.NewLine + Environment.NewLine;
                 Console.WriteLine(facturacion1);
                 orden.ListarCarrito();

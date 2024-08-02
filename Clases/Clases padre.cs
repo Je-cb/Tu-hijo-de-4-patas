@@ -13,9 +13,10 @@ namespace TuHijoDe4Patas
 
         //Metodos
         //Constructor parametrico
-        public Persona(string nombre, string persona, int id)
+        public Persona(string nombre, string apellido, int id)
         {
             this.nombre = nombre;
+            this.apellido = apellido;
             this.id = id;
         }
 
@@ -60,11 +61,11 @@ namespace TuHijoDe4Patas
         //Informacion del Item
         public virtual string InfoItem()
         {
-            string mensaje = $"Codigo:                  {codigo}" + Environment.NewLine +
+            string mensaje = $"Código:                  {codigo}" + Environment.NewLine +
                              $"Nombre:                  {nombre}" + Environment.NewLine + 
                              $"Descripción:             {descripcion}" + Environment.NewLine + 
-                             $"Precio sin iva:          {subprecio} x {cantidad} = {subprecio*cantidad}" + Environment.NewLine + 
-                             $"Categoria de Item:       {categoria}";
+                             $"Precio sin IVA:          {subprecio} x {cantidad} = {subprecio*cantidad}" + Environment.NewLine + 
+                             $"Categoría de Item:       {categoria}";
             return mensaje;
         }
 
