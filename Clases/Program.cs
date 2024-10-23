@@ -12,9 +12,9 @@ namespace TuHijoDe4Patas
             Console.Title = "TU HIJO DE 4 PATAS";
 
             // Crear vendedores
-            Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 445, 1);
-            Vendedor vendedor2 = new Vendedor("Luis", "Ortega", 5587, 2);
-            Vendedor vendedor3 = new Vendedor("Jorge", "Carrero", 29558741, 3);
+            Vendedor vendedor1 = new Vendedor("Arianna", "Olivares", 30680385, 1);
+            Vendedor vendedor2 = new Vendedor("Luis", "Ortega", 31849703, 2);
+            Vendedor vendedor3 = new Vendedor("Jorge", "Carrero", 26128418, 3);
             // Crear arreglo de vendedores
             Vendedor[] vendedores = { vendedor1, vendedor2, vendedor3 };
 
@@ -115,7 +115,10 @@ namespace TuHijoDe4Patas
                     Console.Write(" Dirección: ");
                     string direccion = Console.ReadLine();
 
-                    Cliente cliente1 = new Cliente(nombre, apellido, id, email, telefono, direccion);
+                    Console.Write(" Es contribuyente especial (1 - SI / 0 - NO): ");
+                    int contribuyente = Convert.ToInt32(Console.ReadLine());
+
+                    Cliente cliente1 = new Cliente(nombre, apellido, id, email, telefono, direccion, contribuyente);
                     // Mostrar cliente
                     Console.WriteLine(Environment.NewLine + cliente1.InfoPersona());
 
@@ -280,12 +283,18 @@ namespace TuHijoDe4Patas
                                     }
                                     break;
                                 case "4": // Facturar
+                                    
+                                    int metodoPago;
+
                                     compra = false;
                                     agg = false;
                                     Console.Clear();
-
                                     Vendedor vendedorEncontrado = vendedor1.BuscarVendedor(codigoVendedor, vendedores);
-                                    Factura factura = new Factura(cliente1, vendedorEncontrado, carrito);
+                                   
+                                    Console.WriteLine(" MÉTODO DE PAGO:     (1 - BOLÍVARES / 2 - DIVISAS)");
+                                    metodoPago = Convert.ToInt32(Console.ReadLine());
+
+                                    Factura factura = new Factura(metodoPago, cliente1, vendedorEncontrado, carrito);
                                     factura.FinalizarFactura();
                                     break;
                                 default:

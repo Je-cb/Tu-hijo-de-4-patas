@@ -56,7 +56,7 @@ namespace TuHijoDe4Patas
                              $"Necesidades particulares de producto:       {necesidades}" + Environment.NewLine +
                              $"Tipo de producto:                           {tipo}" + Environment.NewLine +
                              $"Diseño personalizado:                       {diseñoPersonalizado}" + Environment.NewLine +
-                             $"Características particulares de producto    {caracteristicas}" + Environment.NewLine +;
+                             $"Características particulares de producto    {caracteristicas}" + Environment.NewLine;
             return mensaje;
         }
 

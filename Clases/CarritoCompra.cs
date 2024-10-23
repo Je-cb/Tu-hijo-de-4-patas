@@ -15,6 +15,7 @@ namespace TuHijoDe4Patas
         private int numeroDeItems;      //Contador de numero de articulos individuales dentro del carrito
         private double subtotal;
         private double iva;
+        private double igtf;
         private double total;
 
         public CarritoCompra()
@@ -128,6 +129,26 @@ namespace TuHijoDe4Patas
             }
 
             return iva;
+        }
+
+        public double CalcularIGTF()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                igtf += (Items[i].GetSubprecio()) * 0.03;
+            }
+
+            return igtf;
+        }
+
+        public double CalcularIGTFespecial()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                igtf += (Items[i].GetSubprecio()) * 0.02;
+            }
+
+            return igtf;
         }
 
         public double CalcularTotal()
