@@ -11,27 +11,31 @@ namespace TuHijoDe4Patas
         private Item[] Items;           //Arreglo que guarda los Items dentro del carrito
         private Item[] AggItems;        //Arreglo para redimensionar el carrito al agregar nuevos Items 
         private Item[] RestItems;       //Arreglo para redimensionar el carrito al eliminar Items
-        private int contador;           //Contador de items dentro del carrito
+        private int contador;           //Contador de posiciones dentro del arreglo de items del carrito
+        private int numeroDeItems;      //Contador de numero de articulos individuales dentro del carrito
         private double subtotal;
         private double iva;
+        private double igtf;
         private double total;
 
         public CarritoCompra()
         {
             Items = new Item[1];
             contador = 0;
+            numeroDeItems = 0;
         }
 
         //Se hace uso de un uevo vector 'AggItem' con una posicion adicional para almacenar el nuevo Item y luego se redimensiona el vector 'Items' original
         //que contiene el nuevo Item 
         public void AgregarItem(Item item)
+
         {
             for (int i = 0; i < contador; i++)
             {
                 if (Items[i].GetCodigo() == item.GetCodigo())           //Comprobar si el item ya se encuentra dentro del carrito
                 {
                     Items[i].SetCantidad();                             //Aumenta en 1 la propiedad de cantidad del item en caso de encontrarse
-                    Console.WriteLine("El item se sumo al total dentro del carrito");
+                    Console.WriteLine("EL ITEM FUE AGREGADO AL CARRITO");
                     return;
                 }
             }
@@ -82,11 +86,11 @@ namespace TuHijoDe4Patas
                 }
                 Items = RestItems;
                 contador--;
-                Console.WriteLine(Environment.NewLine + "Item eliminado del carrito" + Environment.NewLine);
+                Console.WriteLine(Environment.NewLine + "ITEM ELIMINADO DEL CARRITO" + Environment.NewLine);
             }
             else
             {
-                Console.WriteLine("Item no encontrado en el carrito");
+                Console.WriteLine("ITEM NO ENCONTRADO EN EL CARRITO");
             }
         }
 
@@ -94,8 +98,17 @@ namespace TuHijoDe4Patas
         {
             for (int i = 0; i < contador; i++)
             {
-                Items[i].InfoItem();
+                Console.WriteLine(Items[i].InfoItem());
             }
+        }
+
+        public int NumeroDeItems()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                numeroDeItems += Items[i].GetCantidad();
+            }
+            return numeroDeItems;
         }
 
         public double CalcularSubtotal()
@@ -116,6 +129,26 @@ namespace TuHijoDe4Patas
             }
 
             return iva;
+        }
+
+        public double CalcularIGTF()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                igtf += (Items[i].GetSubprecio()) * 0.03;
+            }
+
+            return igtf;
+        }
+
+        public double CalcularIGTFespecial()
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                igtf += (Items[i].GetSubprecio()) * 0.02;
+            }
+
+            return igtf;
         }
 
         public double CalcularTotal()
